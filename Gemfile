@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-
+gem 'pry'
+gem 'pry-nav'
 gem 'rack'
 gem 'rack-test'
 gem 'rspec'
