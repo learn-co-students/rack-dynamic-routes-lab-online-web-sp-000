@@ -26,3 +26,6 @@ DEPENDENCIES
   rack
   rack-test
   rspec
+
+BUNDLED WITH
+   2.0.1
