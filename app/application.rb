@@ -1,5 +1,6 @@
 class Application
 
+  @@items = []
   def call(env)
     resp = Rack::Response.new
     req = Rack::Request.new(env)
@@ -7,8 +8,8 @@ class Application
     if req.path = "/items"
       resp.write
     else
-      resp.write "Request not Found"
       resp.status = 404
+      resp.write "Item not Found"
     end
 
     resp.finish
