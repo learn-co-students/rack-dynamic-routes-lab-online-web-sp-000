@@ -6,11 +6,18 @@ class Application
 
     if req.path.match(/items/)
       item = req.path_info.split("/items/").last
-      @@items.find(item){|i| i.name  == item}.price
-      resp.write "#{found_item}\n"
-      resp.status = "200"
-      binding.pry
-
+      # binding.pry
+      found_item = @@items.find(item) do |i|
+        binding.pry
+        i.name  == item
+      end
+      if found_item != nil
+        resp.write "#{item}: #{found_item.price}\n"
+        resp.status = "200"
+      else
+        resp.write "Item not found"
+        resp.status = "400"
+      end
     else
       resp.write "Route not found"
       resp.status = "404"
