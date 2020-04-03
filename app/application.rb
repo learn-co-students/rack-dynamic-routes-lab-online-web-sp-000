@@ -10,7 +10,7 @@ class Application
       item_name = req.path.split("/items/").last
       #above gets last item name from requested url
       
-      if item = @@items.detect{|i| i.name == item_name}
+      if item = @@items.detect{|a| a.name == item_name}
         resp.write item.price
       else
         resp.status = 400
