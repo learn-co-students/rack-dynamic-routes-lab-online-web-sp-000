@@ -20,7 +20,8 @@ describe "Shopping Cart Rack App" do
     end
 
     it 'Returns an error and 400 if the item is not there' do
-      Application.class_variable_set(:@@items, [Item.new("Figs",3.42),Item.new("Pears",0.99)])
+
+      #Application.class_variable_set(:@@items, [Item.new("Figs",3.42),Item.new("Pears",0.99)])
       get '/items/Apples'
       expect(last_response.body).to include("Item not found")
       expect(last_response.status).to be(400)
@@ -28,3 +29,31 @@ describe "Shopping Cart Rack App" do
 
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##fuck this lab
