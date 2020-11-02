@@ -12,11 +12,13 @@ class Application
         req = Rack::Request.new(env)
 
         if req.path.match(/items/)
-            item = req.params["item"]
-            binding.pry
+            path = req.path
+            item = path.split("/")[2]
+            # binding.pry
             resp.write check_item(item)
-            # @@items.each do |item|
-            #    resp.write "#{item.price}\n"
+            # if returned_item = @@items.find { |i| i.name == item }
+                # @@items.each do |item|
+            #   resp.write "#{returned_item.price}\n"
             # end
         elsif 
             resp.write "Route not found"
@@ -25,12 +27,10 @@ class Application
         resp.finish
     end
 
-    def check_item(item)
+    def check_item(item) # highlight all rows and type command+?
         # binding.pry
-        if @@items.include?(item)
-            @@items.each do |item|
-            return "#{item.price}"
-            end
+       if returned_item = @@items.find { |i| i.name == item }
+            return "#{returned_item.price}"
         else
             return "Item not found"
         end
