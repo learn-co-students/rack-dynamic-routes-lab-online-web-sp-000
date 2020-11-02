@@ -14,24 +14,21 @@ class Application
         if req.path.match(/items/)
             path = req.path
             item = path.split("/")[2]
-            # binding.pry
             resp.write check_item(item)
-            # if returned_item = @@items.find { |i| i.name == item }
-                # @@items.each do |item|
-            #   resp.write "#{returned_item.price}\n"
-            # end
-        elsif 
+        end
+
+        if !req.path.match(/items/)
             resp.write "Route not found"
             resp.status = 404
         end
         resp.finish
     end
 
-    def check_item(item) # highlight all rows and type command+?
+    def check_item(item) # highlight all rows and type command+? to comment or uncomment out multiple lines
         # binding.pry
        if returned_item = @@items.find { |i| i.name == item }
             return "#{returned_item.price}"
-        else
+       else
             return "Item not found"
         end
     end
