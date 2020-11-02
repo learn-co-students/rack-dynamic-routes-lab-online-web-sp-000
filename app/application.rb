@@ -30,7 +30,7 @@ class Application
             return "#{returned_item.price}"
        else
             return "Item not found"
-            Rack::Response.new.status = 400
+            return Rack::Response.new.status = 400
         end
     end
 end
