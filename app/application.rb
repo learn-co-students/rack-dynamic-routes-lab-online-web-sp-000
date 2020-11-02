@@ -12,9 +12,12 @@ class Application
         req = Rack::Request.new(env)
 
         if req.path.match(/items/)
+            # binding.pry
             path = req.path
-            item = path.split("/")[2]
-            resp.write check_item(item)
+            item = path.split("/").last
+            # binding.pry
+            check_item(item, resp)
+
         end
 
         if !req.path.match(/items/)
@@ -24,13 +27,13 @@ class Application
         resp.finish
     end
 
-    def check_item(item) # highlight all rows and type command+? to comment or uncomment out multiple lines
+    def check_item(item, response) # highlight all rows and type command+? to comment or uncomment out multiple lines
         # binding.pry
        if returned_item = @@items.find { |i| i.name == item }
-            return "#{returned_item.price}"
+            response.write returned_item.price
        else
-            return "Item not found"
-            return Rack::Response.new.status = 400
+            response.write "Item not found"
+            response.status = 400
         end
     end
 end
