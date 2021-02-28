@@ -11,16 +11,12 @@ class Application
   if req.path.match("/items/")
     item_name = req.path.split("/items/").last
     item = @@items.find{|item| item.name == item_name}
-    resp.write item.price
-    
-    elsif
-    req.path.match("/items/")
-    item_name = req.path.split("/items/").last
-    item = @@items.find{|item| item.name == item_name}
-    if !item
+    if item resp.write item.price
+      elsif
+      !item
     resp.write "Item not found"
     resp.status = 400
-    end 
+    
     
     else
       resp.write "Route not found"
